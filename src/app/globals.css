@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+:root {
+  --cream: #fbf7ef;
+  --paper: #f3ede0;
+  --forest: #24402f;
+  --forest-light: #3c5b45;
+  --honey: #ce9e4a;
+  --clay: #b15c3e;
+  --ink: #2a2a22;
+  --ink-soft: #5c5b4e;
+  --line: #ddd4bf;
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-paper: var(--paper);
+  --color-forest: var(--forest);
+  --color-forest-light: var(--forest-light);
+  --color-honey: var(--honey);
+  --color-clay: var(--clay);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --font-serif: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+.font-serif-display {
+  font-family: var(--font-serif);
+}
