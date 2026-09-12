@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import type { Article } from "@/lib/articles";
+import type { Article } from "@prisma/client";
 
 export default function ArticleSearch({ articles }: { articles: Article[] }) {
   const [query, setQuery] = useState("");

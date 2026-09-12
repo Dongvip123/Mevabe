@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { articles } from "@/lib/articles";
+import { prisma } from "@/lib/prisma";
 
 const milestones = [
   { age: "1 tháng", size: 88 },
@@ -23,7 +23,12 @@ const categories = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const articles = await prisma.article.findMany({
+    orderBy: { createdAt: "desc" },
+    take: 5,
+  });
+
   return (
     <>
       {/* Hero */}
@@ -45,9 +50,8 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* Growth ring motif */}
         <div className="relative h-64 flex items-center justify-center">
-          {milestones.map((m, i) => (
+          {milestones.map((m) => (
             <div
               key={m.age}
               className="absolute rounded-full border border-forest/25"
@@ -58,19 +62,6 @@ export default function Home() {
             <span className="font-serif-display text-3xl text-clay">12</span>
             <span className="text-xs text-ink-soft">tháng đầu đời</span>
           </div>
-          {milestones.map((m, i) => (
-            <span
-              key={`label-${m.age}`}
-              className="absolute text-[11px] text-ink-soft"
-              style={{
-                top: `calc(50% - ${m.size / 2}px - 14px)`,
-                left: "50%",
-                transform: "translateX(-50%)",
-              }}
-            >
-              {i === milestones.length - 1 ? "" : m.age}
-            </span>
-          ))}
         </div>
       </section>
 
@@ -93,35 +84,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured articles */}
+      {/* Featured articles — lấy trực tiếp từ database */}
       <section className="mx-auto max-w-5xl px-6 py-16">
         <h2 className="font-serif-display text-2xl text-forest mb-10">
           Bài viết mới
         </h2>
-        <div className="flex flex-col divide-y divide-line">
-          {articles.map((a) => (
-            <Link
-              key={a.slug}
-              href={`/bai-viet/${a.slug}`}
-              className="group py-6 grid sm:grid-cols-[110px_1fr] gap-4 items-baseline"
-            >
-              <span className="text-xs uppercase tracking-wide text-clay">
-                {a.category}
-              </span>
-              <div>
-                <h3 className="font-serif-display text-xl text-ink group-hover:text-forest transition-colors">
-                  {a.title}
-                </h3>
-                <p className="mt-2 text-sm text-ink-soft leading-relaxed max-w-2xl">
-                  {a.excerpt}
-                </p>
-                <span className="mt-2 inline-block text-xs text-ink-soft/70">
-                  {a.ageTag} · {a.readTime}
+        {articles.length === 0 ? (
+          <p className="text-ink-soft text-sm">
+            Chưa có bài viết nào trong database. Chạy lệnh seed để thêm bài
+            viết mẫu.
+          </p>
+        ) : (
+          <div className="flex flex-col divide-y divide-line">
+            {articles.map((a: (typeof articles)[number]) => (
+              <Link
+                key={a.slug}
+                href={`/bai-viet/${a.slug}`}
+                className="group py-6 grid sm:grid-cols-[110px_1fr] gap-4 items-baseline"
+              >
+                <span className="text-xs uppercase tracking-wide text-clay">
+                  {a.category}
                 </span>
-              </div>
-            </Link>
-          ))}
-        </div>
+                <div>
+                  <h3 className="font-serif-display text-xl text-ink group-hover:text-forest transition-colors">
+                    {a.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-ink-soft leading-relaxed max-w-2xl">
+                    {a.excerpt}
+                  </p>
+                  <span className="mt-2 inline-block text-xs text-ink-soft/70">
+                    {a.ageTag} · {a.readTime}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* About */}
