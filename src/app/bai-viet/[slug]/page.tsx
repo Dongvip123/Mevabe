@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import CommentSection from "@/components/CommentSection";
+import ProductSuggestions from "@/components/ProductSuggestions";
 import { getCategoryImage } from "@/lib/categoryImage";
 
 export async function generateMetadata({
@@ -31,6 +32,12 @@ export default async function ArticlePage({
   const comments = await prisma.comment.findMany({
     where: { articleId: article.id },
     orderBy: { createdAt: "desc" },
+  });
+
+  const products = await prisma.product.findMany({
+    where: { category: article.category },
+    orderBy: { order: "asc" },
+    take: 4,
   });
 
   const paragraphs = article.content.split("\n\n");
@@ -71,6 +78,8 @@ export default async function ArticlePage({
         Bài viết mang tính tham khảo chung, không thay thế tư vấn y tế. Nếu bé
         có dấu hiệu bất thường, hãy đưa bé đến gặp bác sĩ nhi khoa.
       </div>
+
+      <ProductSuggestions products={products} />
 
       <CommentSection
         articleId={article.id}

@@ -35,6 +35,19 @@ model Comment {
   articleId String
 }
 
+// Sản phẩm gợi ý (affiliate) — hiển thị trên trang chủ và cuối mỗi bài viết
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  imageUrl    String
+  price       String?
+  affiliateUrl String
+  note        String? // ví dụ: "Được nhiều mẹ tin dùng"
+  category    String // khớp với category của Article để gợi ý đúng chủ đề
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+}
+
 // Hồ sơ bé của mỗi phụ huynh (gắn theo email đăng nhập)
 model Baby {
   id           String         @id @default(cuid())
