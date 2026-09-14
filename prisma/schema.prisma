@@ -34,3 +34,31 @@ model Comment {
   article   Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
   articleId String
 }
+
+// Hồ sơ bé của mỗi phụ huynh (gắn theo email đăng nhập)
+model Baby {
+  id           String         @id @default(cuid())
+  ownerEmail   String
+  name         String
+  birthDate    DateTime
+  gender       String // "male" | "female"
+  createdAt    DateTime       @default(now())
+  growthRecords GrowthRecord[]
+
+  @@index([ownerEmail])
+}
+
+// Mỗi lần đo cân nặng / chiều cao của bé
+model GrowthRecord {
+  id          String   @id @default(cuid())
+  date        DateTime
+  weightKg    Float?
+  heightCm    Float?
+  headCm      Float?
+  createdAt   DateTime @default(now())
+
+  baby   Baby   @relation(fields: [babyId], references: [id], onDelete: Cascade)
+  babyId String
+
+  @@index([babyId])
+}

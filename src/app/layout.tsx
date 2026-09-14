@@ -27,6 +27,9 @@ export default function RootLayout({
               <Link href="/bai-viet" className="hover:text-forest transition-colors">
                 Bài viết
               </Link>
+              <Link href="/theo-doi-be" className="hover:text-forest transition-colors">
+                Theo dõi bé
+              </Link>
               <Link href="/#ve-mam-nho" className="hover:text-forest transition-colors">
                 Về Mầm Nhỏ
               </Link>
