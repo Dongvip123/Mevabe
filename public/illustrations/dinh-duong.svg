@@ -1,0 +1,11 @@
+<svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="225" fill="#f3ede0"/>
+  <circle cx="200" cy="112" r="88" fill="none" stroke="#24402f" stroke-opacity="0.15" stroke-width="1.5"/>
+  <circle cx="200" cy="112" r="60" fill="none" stroke="#24402f" stroke-opacity="0.15" stroke-width="1.5"/>
+  <!-- bowl -->
+  <path d="M155 118c0 26 20 46 45 46s45-20 45-46" fill="none" stroke="#24402f" stroke-width="6" stroke-linecap="round"/>
+  <ellipse cx="200" cy="118" rx="47" ry="10" fill="#ce9e4a"/>
+  <!-- spoon -->
+  <line x1="252" y1="70" x2="238" y2="112" stroke="#b15c3e" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="256" cy="66" rx="9" ry="13" fill="#b15c3e" transform="rotate(20 256 66)"/>
+</svg>

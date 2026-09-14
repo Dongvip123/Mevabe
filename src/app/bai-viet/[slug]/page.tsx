@@ -1,7 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import CommentSection from "@/components/CommentSection";
+import { getCategoryImage } from "@/lib/categoryImage";
 
 export async function generateMetadata({
   params,
@@ -38,6 +40,16 @@ export default async function ArticlePage({
       <Link href="/bai-viet" className="text-sm text-ink-soft hover:text-forest">
         ← Tất cả bài viết
       </Link>
+
+      <div className="mt-6 rounded-md overflow-hidden bg-paper">
+        <Image
+          src={getCategoryImage(article.category)}
+          alt=""
+          width={800}
+          height={450}
+          className="w-full h-auto"
+        />
+      </div>
 
       <span className="block mt-6 text-xs uppercase tracking-wide text-clay">
         {article.category} · {article.ageTag}

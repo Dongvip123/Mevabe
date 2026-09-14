@@ -1,0 +1,9 @@
+<svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="225" fill="#f3ede0"/>
+  <circle cx="200" cy="112" r="88" fill="none" stroke="#24402f" stroke-opacity="0.15" stroke-width="1.5"/>
+  <circle cx="200" cy="112" r="60" fill="none" stroke="#24402f" stroke-opacity="0.15" stroke-width="1.5"/>
+  <!-- sprout -->
+  <path d="M200 155v-45" stroke="#24402f" stroke-width="6" stroke-linecap="round"/>
+  <path d="M200 110c0-22 18-32 34-32-2 20-14 34-34 32z" fill="#3c5b45"/>
+  <path d="M200 122c0-18-16-26-30-26 2 18 12 28 30 26z" fill="#ce9e4a"/>
+</svg>

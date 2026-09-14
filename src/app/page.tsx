@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
+import { getCategoryImage } from "@/lib/categoryImage";
 
 const milestones = [
   { age: "1 tháng", size: 88 },
@@ -100,8 +102,17 @@ export default async function Home() {
               <Link
                 key={a.slug}
                 href={`/bai-viet/${a.slug}`}
-                className="group py-6 grid sm:grid-cols-[110px_1fr] gap-4 items-baseline"
+                className="group py-6 grid sm:grid-cols-[96px_110px_1fr] gap-4 items-center"
               >
+                <div className="w-24 h-16 rounded-sm overflow-hidden bg-paper hidden sm:block">
+                  <Image
+                    src={getCategoryImage(a.category)}
+                    alt=""
+                    width={96}
+                    height={64}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <span className="text-xs uppercase tracking-wide text-clay">
                   {a.category}
                 </span>

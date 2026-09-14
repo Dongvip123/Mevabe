@@ -1,0 +1,10 @@
+<svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="225" fill="#f3ede0"/>
+  <circle cx="200" cy="112" r="88" fill="none" stroke="#24402f" stroke-opacity="0.15" stroke-width="1.5"/>
+  <circle cx="200" cy="112" r="60" fill="none" stroke="#24402f" stroke-opacity="0.15" stroke-width="1.5"/>
+  <!-- cupped hands -->
+  <path d="M150 120c0 20 22 36 50 36s50-16 50-36" fill="none" stroke="#24402f" stroke-width="6" stroke-linecap="round"/>
+  <path d="M150 120c-8-6-14-16-10-26 3-8 12-11 18-6" fill="none" stroke="#24402f" stroke-width="6" stroke-linecap="round"/>
+  <path d="M250 120c8-6 14-16 10-26-3-8-12-11-18-6" fill="none" stroke="#24402f" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="200" cy="108" r="14" fill="#ce9e4a"/>
+</svg>

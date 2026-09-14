@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
+import ChatWidget from "@/components/ChatWidget";
 
 export const metadata: Metadata = {
   title: "Mầm Nhỏ — Đồng hành cùng mẹ và bé",
@@ -46,6 +47,8 @@ export default function RootLayout({
             <p className="text-xs text-cream/50 mt-4">© 2026 Mầm Nhỏ.</p>
           </div>
         </footer>
+
+        <ChatWidget />
       </body>
     </html>
   );
