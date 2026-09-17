@@ -3,10 +3,43 @@ import Link from "next/link";
 import "./globals.css";
 import ChatWidget from "@/components/ChatWidget";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mevabe-red.vercel.app";
+const siteTitle = "Mầm Nhỏ — Đồng hành cùng mẹ và bé";
+const siteDescription =
+  "Kiến thức chăm sóc mẹ và bé đáng tin cậy, từ giấc ngủ, dinh dưỡng đến lịch tiêm chủng — viết dễ hiểu, có căn cứ.";
+
 export const metadata: Metadata = {
-  title: "Mầm Nhỏ — Đồng hành cùng mẹ và bé",
-  description:
-    "Kiến thức chăm sóc mẹ và bé đáng tin cậy, từ giấc ngủ, dinh dưỡng đến lịch tiêm chủng — viết dễ hiểu, có căn cứ.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteTitle,
+    template: "%s — Mầm Nhỏ",
+  },
+  description: siteDescription,
+  keywords: [
+    "chăm sóc bé",
+    "mẹ và bé",
+    "giấc ngủ trẻ sơ sinh",
+    "dinh dưỡng cho bé",
+    "tiêm phòng cho bé",
+    "theo dõi tăng trưởng của bé",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "vi_VN",
+    siteName: "Mầm Nhỏ",
+    title: siteTitle,
+    description: siteDescription,
+    url: siteUrl,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

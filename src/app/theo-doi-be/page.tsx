@@ -1,7 +1,9 @@
 import GrowthTracker from "@/components/GrowthTracker";
 
 export const metadata = {
-  title: "Theo dõi bé — Mầm Nhỏ",
+  title: "Theo dõi bé",
+  description:
+    "Ghi lại cân nặng, chiều cao của bé theo thời gian và xem biểu đồ tăng trưởng — riêng tư, chỉ mình bạn xem được.",
 };
 
 export default function TheoDoiBePage() {

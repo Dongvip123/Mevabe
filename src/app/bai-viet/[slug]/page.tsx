@@ -15,7 +15,35 @@ export async function generateMetadata({
   const article = await prisma.article.findUnique({
     where: { slug },
   });
-  return { title: article ? `${article.title} — Mầm Nhỏ` : "Mầm Nhỏ" };
+
+  if (!article) {
+    return { title: "Không tìm thấy bài viết" };
+  }
+
+  const imagePath = getCategoryImage(article.category);
+
+  return {
+    title: article.title,
+    description: article.excerpt,
+    alternates: {
+      canonical: `/bai-viet/${article.slug}`,
+    },
+    openGraph: {
+      type: "article",
+      title: article.title,
+      description: article.excerpt,
+      url: `/bai-viet/${article.slug}`,
+      images: [{ url: imagePath, width: 400, height: 225 }],
+      publishedTime: article.createdAt.toISOString(),
+      modifiedTime: article.updatedAt.toISOString(),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.excerpt,
+      images: [imagePath],
+    },
+  };
 }
 
 export default async function ArticlePage({
@@ -42,8 +70,23 @@ export default async function ArticlePage({
 
   const paragraphs = article.content.split("\n\n");
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.excerpt,
+    datePublished: article.createdAt.toISOString(),
+    dateModified: article.updatedAt.toISOString(),
+    author: { "@type": "Organization", name: "Mầm Nhỏ" },
+    publisher: { "@type": "Organization", name: "Mầm Nhỏ" },
+  };
+
   return (
     <article className="mx-auto max-w-2xl px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Link href="/bai-viet" className="text-sm text-ink-soft hover:text-forest">
         ← Tất cả bài viết
       </Link>

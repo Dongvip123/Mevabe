@@ -2,7 +2,10 @@ import { prisma } from "@/lib/prisma";
 import ArticleSearch from "@/components/ArticleSearch";
 
 export const metadata = {
-  title: "Bài viết — Mầm Nhỏ",
+  title: "Bài viết",
+  description:
+    "Toàn bộ bài viết về giấc ngủ, dinh dưỡng, sức khỏe, phát triển và tiêm phòng cho bé trên Mầm Nhỏ.",
+  alternates: { canonical: "/bai-viet" },
 };
 
 export default async function BaiVietPage() {
