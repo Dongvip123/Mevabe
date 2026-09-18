@@ -1,4 +1,14 @@
 import { NextResponse } from "next/server";
+import { z } from "zod";
+
+const messageSchema = z.object({
+  role: z.enum(["user", "assistant"]),
+  content: z.string().trim().min(1).max(2000),
+});
+
+const chatSchema = z.object({
+  messages: z.array(messageSchema).min(1).max(20), // giới hạn độ dài hội thoại để tránh lạm dụng
+});
 
 const SYSTEM_PROMPT = `Bạn là trợ lý AI của Mầm Nhỏ — một website chia sẻ kiến thức chăm sóc mẹ và bé tại Việt Nam.
 
@@ -11,7 +21,17 @@ Nguyên tắc bắt buộc:
 - Nếu câu hỏi nằm ngoài chủ đề mẹ và bé, lịch sự từ chối và mời quay lại chủ đề của trang.`;
 
 export async function POST(request: Request) {
-  const { messages } = await request.json();
+  const body = await request.json().catch(() => null);
+  const parsed = chatSchema.safeParse(body);
+
+  if (!parsed.success) {
+    return NextResponse.json(
+      { error: parsed.error.issues[0]?.message || "Dữ liệu không hợp lệ" },
+      { status: 400 }
+    );
+  }
+
+  const { messages } = parsed.data;
 
   if (!process.env.ANTHROPIC_API_KEY) {
     return NextResponse.json(

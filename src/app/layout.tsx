@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
 import ChatWidget from "@/components/ChatWidget";
+import MobileNav from "@/components/MobileNav";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mevabe-red.vercel.app";
 const siteTitle = "Mầm Nhỏ — Đồng hành cùng mẹ và bé";
@@ -48,25 +49,12 @@ export default function RootLayout({
   return (
     <html lang="vi">
       <body className="antialiased">
-        <header className="border-b border-line bg-cream sticky top-0 z-20">
+        <header className="border-b border-line bg-cream sticky top-0 z-20 relative">
           <div className="mx-auto max-w-5xl px-6 py-4 flex items-center justify-between">
             <Link href="/" className="font-serif-display text-xl text-forest tracking-tight">
               Mầm Nhỏ
             </Link>
-            <nav className="flex items-center gap-6 text-sm text-ink-soft">
-              <Link href="/" className="hover:text-forest transition-colors">
-                Trang chủ
-              </Link>
-              <Link href="/bai-viet" className="hover:text-forest transition-colors">
-                Bài viết
-              </Link>
-              <Link href="/theo-doi-be" className="hover:text-forest transition-colors">
-                Theo dõi bé
-              </Link>
-              <Link href="/#ve-mam-nho" className="hover:text-forest transition-colors">
-                Về Mầm Nhỏ
-              </Link>
-            </nav>
+            <MobileNav />
           </div>
         </header>
 
@@ -80,6 +68,20 @@ export default function RootLayout({
               chẩn đoán hay điều trị y tế. Khi bé có dấu hiệu bất thường, cha mẹ nên đưa bé
               đến gặp bác sĩ nhi khoa.
             </p>
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm mt-2">
+              <Link href="/bai-viet" className="hover:text-cream transition-colors">
+                Bài viết
+              </Link>
+              <Link href="/theo-doi-be" className="hover:text-cream transition-colors">
+                Theo dõi bé
+              </Link>
+              <Link href="/chinh-sach-bao-mat" className="hover:text-cream transition-colors">
+                Chính sách bảo mật
+              </Link>
+              <Link href="/dieu-khoan-su-dung" className="hover:text-cream transition-colors">
+                Điều khoản sử dụng
+              </Link>
+            </div>
             <p className="text-xs text-cream/50 mt-4">© 2026 Mầm Nhỏ.</p>
           </div>
         </footer>

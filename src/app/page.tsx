@@ -20,6 +20,18 @@ const categories = [
     desc: "Bú mẹ, ăn dặm, tăng cân theo chuẩn WHO — đọc đúng, đọc đủ, không hoang mang.",
   },
   {
+    name: "Sức khỏe",
+    desc: "Sốt, táo bón, trớ sữa, vàng da — nhận biết khi nào bình thường, khi nào cần khám.",
+  },
+  {
+    name: "Phát triển",
+    desc: "Các mốc vận động, mọc răng, và nhịp phát triển của bé theo từng giai đoạn.",
+  },
+  {
+    name: "Chăm sóc",
+    desc: "Hăm tã, đồ sơ sinh cần thiết và những việc chăm sóc hằng ngày cho bé.",
+  },
+  {
     name: "Tiêm phòng",
     desc: "Lịch tiêm chủng năm đầu đời và những phản ứng thường gặp sau tiêm.",
   },
@@ -54,11 +66,15 @@ export default async function Home() {
 
         <div className="relative h-64 flex items-center justify-center">
           {milestones.map((m) => (
-            <div
-              key={m.age}
-              className="absolute rounded-full border border-forest/25"
-              style={{ width: m.size, height: m.size }}
-            />
+            <div key={m.age} className="absolute" style={{ width: m.size, height: m.size }}>
+              <div className="w-full h-full rounded-full border border-forest/25" />
+              <span
+                className="absolute left-1/2 -translate-x-1/2 text-[11px] text-ink-soft/80 bg-cream px-1"
+                style={{ top: -8 }}
+              >
+                {m.age}
+              </span>
+            </div>
           ))}
           <div className="relative z-10 flex flex-col items-center gap-1">
             <span className="font-serif-display text-3xl text-clay">12</span>
